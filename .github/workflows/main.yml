@@ -1,0 +1,15 @@
+on: [push]
+
+jobs:
+	test_action:
+		runs-on: ubuntu-latest
+		name: Make sure the action works
+		steps:
+			- uses: actions/checkout@v2
+			- id: default-branch
+			  uses: scottmmjackson/get-the-default-branch-action@v1
+			- if: ${{ steps.default-branch.outputs.default-branch != "main" }}
+			  run: |
+				echo "Failure: the default branch is ${{ steps.default-branch.outputs.default-branch }} and not main"
+				exit 1
+
