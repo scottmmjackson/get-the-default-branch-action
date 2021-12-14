@@ -1,5 +1,5 @@
-name: "Get The Default Branch"
-decription: "Get the default branch for this repository"
+name: 'Get The Default Branch'
+description: 'Get the default branch for this repository'
 branding:
   icon: 'git-branch'
   color: 'green'
