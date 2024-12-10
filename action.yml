@@ -6,11 +6,11 @@ branding:
 outputs:
   default_branch:
     description: "The default branch name"
-    value: ${{ steps.default-branch-name.outputs.default-branch }}
 runs:
   using: 'composite'
   steps:
     - id: default-branch-name
       shell: bash
       run: |
-        echo ::set-output name=default-branch::$(curl -s https://api.github.com/repos/${{ github.repository }} -H "Authorization: bearer ${{ github.token }}" | jq -r .default_branch)
+        default_branch=$(curl -s https://api.github.com/repos/${{ github.repository }} -H "Authorization: bearer ${{ github.token }}" | jq -r .default_branch)
+        echo "default_branch=$default_branch" >> $GITHUB_OUTPUT
