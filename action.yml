@@ -12,5 +12,4 @@ runs:
     - id: default-branch-name
       shell: bash
       run: |
-        default_branch=$(curl -s https://api.github.com/repos/${{ github.repository }} -H "Authorization: bearer ${{ github.token }}" | jq -r .default_branch)
-        echo "default_branch=$default_branch" >> $GITHUB_OUTPUT
+       curl -s https://api.github.com/repos/${{ github.repository }} -H "Authorization: bearer ${{ github.token }}" | jq -r '"default_branch=\(.default_branch)"' >> $GITHUB_OUTPUT
